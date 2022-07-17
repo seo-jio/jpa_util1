@@ -12,8 +12,7 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class MemberRepository {
-    @Autowired
-//    @PersistenceContext
+
     private final EntityManager em;
 
     //스프링 부트 사용시 entity manager 또한 autowirde로 생성자 주입 받는다.

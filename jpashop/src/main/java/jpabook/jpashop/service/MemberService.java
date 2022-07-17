@@ -1,22 +1,23 @@
-package jpabook.service;
+package jpabook.jpashop.service;
 
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+
 @Service
-//롬복에서 지원하는 final이 붙은 필드를 주입받는 생성자 생성 annotation
-@RequiredArgsConstructor
-//읽기가 많은 경우 read only true로 전체를 설정하고 write가 필요한 경우에 @Transactionl을 따로 붙여줌
-@Transactional(readOnly = true)
+@Transactional(readOnly = true) //읽기가 많은 경우 read only true로 전체를 설정하고 write가 필요한 경우에 @Transactionl을 따로 붙여줌
+@RequiredArgsConstructor //롬복에서 지원하는 final이 붙은 필드를 주입받는 생성자 생성 annotation
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
+//    @Autowired
 //    public MemberService(MemberRepository memberRepository){
 //        this.memberRepository = memberRepository;
 //    }
