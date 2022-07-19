@@ -43,4 +43,14 @@ public class MemberService {
         return memberRepository.findOne(memberId);
     }
 
+    //dirty checking을 사용하며 update만 수행하고 따로 member를 리턴하지 않는다.
+    //커멘드와 퀴리를 분리하자!! => 내부에서 변경(사이드 이펙트)가 일어나는 메서드인지, 아니면 내부에서 변경이 전혀 일어나지 않는 메서드인지 명확히 분리
+    //커맨드 : 객체의 내부 상태를 변경하지만 값을 반환하지 않는다
+    //쿼리 : 객체 내부 상태를 변경하지 않고 객체의 값을 반환하기만 한다.
+    //insert는 id만 반환하고(아무것도 없으면 조회가 안되니), update는 아무것도 반환하지 않고, 조회는 내부의 변경이 없는 메서드로 설계
+    @Transactional
+    public void update(Long id, String name) {
+        Member findMember = memberRepository.findOne(id);
+        findMember.setName(name);
+    }
 }

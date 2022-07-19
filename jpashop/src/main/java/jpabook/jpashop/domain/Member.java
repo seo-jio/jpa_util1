@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
+//    @NotEmpty  //값을 필수로 받음, javax의 @Valid annotation으로 검증
     private String name;
 
     @Embedded
