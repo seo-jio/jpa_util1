@@ -11,7 +11,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none #ddl none : 데이터를 db에 저장해서 계속 쓸 수 있음
     properties:
       hibernate:
         # show_sql: true
