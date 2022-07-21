@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -27,6 +28,7 @@ public class Order {
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
+//    @BatchSize(size = 100) //in query로 값을 한번에 가져오는 양을 설정
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL) //영속성 전이 사용
     private List<OrderItem> orderItems = new ArrayList<>();
 

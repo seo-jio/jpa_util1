@@ -25,6 +25,14 @@ public class OrderSimpleApiController {
     private final OrderRepository orderRepository;
     private final OrderSimpleQueryRepository orderSimpleQueryRepository;
 
+
+    /**
+     * xToOne(ManyToOne, OneToOne)
+     * Order
+     * Order -> Member
+     * Order -> Delivery
+     */
+
     //엔티티 직접 노출
     //양방향 연관관계인 필드는 한 쪽을 @JsonIgnore로 무시해야 한다.
     //엔티티가 변하면 api 스펙이 변함

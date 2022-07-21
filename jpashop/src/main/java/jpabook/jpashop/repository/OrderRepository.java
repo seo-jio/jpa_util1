@@ -92,5 +92,27 @@ public class OrderRepository {
                             " join fetch o.delivery d", Order.class)
                 .getResultList();
     }
+
+    //페이징을 적용한 패치 조인 전략
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        return em.createQuery(
+                        "select o from Order o" +
+                                " join fetch o.member m" +
+                                " join fetch o.delivery d", Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+    }
+
+    //컬렉션에서 패치 조인을 사용할 때는 하나에만 사용하고, 페이징 기능을 사용할 수 없다.
+    //OneToMany의 경우 join 시 값이 뻥튀기 되므로 distinct 사용(sql의 distinct와 다름, 중복 엔티티 제거)
+    public List<Order> findAllWithItem() {
+        return em.createQuery("select distinct o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d" +
+                        " join fetch o.orderItems oi" +
+                        " join fetch oi.item i", Order.class)
+                .getResultList();
+    }
 }
 

@@ -11,11 +11,12 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: none #ddl none : 데이터를 db에 저장해서 계속 쓸 수 있음
+      ddl-auto: create #ddl none : 데이터를 db에 저장해서 계속 쓸 수 있음
     properties:
       hibernate:
         # show_sql: true
         format_sql: true
+        default_batch_fetch_size: 100 #in query를 통해 미리 값을 size 값만큼 읽어 온다.(중복X, n+1 문제 해결)
 
 logging.level:
   org.hibernate.SQL: debug
