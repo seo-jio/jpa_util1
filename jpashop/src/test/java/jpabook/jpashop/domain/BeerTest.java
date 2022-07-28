@@ -26,7 +26,7 @@ public class BeerTest {
     @Test
     public void BeerTest() throws Exception {
         //given
-        Beer beer = new Beer();
+        Beer beer = new Beer("하이네켄");
         TasteEntity tasteEntity1 = new TasteEntity(Taste.SOUR);
         TasteEntity tasteEntity2 = new TasteEntity(Taste.SWEET);
         tasteEntityRepository.save(tasteEntity1);
@@ -35,6 +35,7 @@ public class BeerTest {
         beer.addTaste(tasteEntity1);
         beer.addTaste(tasteEntity2);
         beerRepository.save(beer);
+
         //when
         List<TasteEntity> result = beer.getTastes();
         for (TasteEntity tasteEntity : result) {

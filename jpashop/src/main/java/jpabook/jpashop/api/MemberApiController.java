@@ -1,5 +1,7 @@
 package jpabook.jpashop.api;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.service.MemberService;
 import lombok.AllArgsConstructor;
@@ -7,11 +9,13 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Tag(name = "MemberApiController", description = "사용자 관련 API")
 @RestController
 @RequiredArgsConstructor
 public class MemberApiController {
@@ -21,6 +25,7 @@ public class MemberApiController {
     //1. 엔티티를 직접 파라미터 바인딩하여 사용한 경우
     //엔티티와 api 스펙을 분리해야 한다.(엔티티 변경 시 side effect를 예방 할 수 있다)
     //api에서는 엔티티를 파라미터로 json 바인딩 써서 사용하면 안된다!(dto 객체를 만들어서 사용해야 한다.)
+    @Operation(description = "사용자 생성")
     @PostMapping("/api/v1/members")
     public CreateMemberResponse saveMemberV1(@RequestBody @Valid Member member){
         Long id = memberService.join(member);

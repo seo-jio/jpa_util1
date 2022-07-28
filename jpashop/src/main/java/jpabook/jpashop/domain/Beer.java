@@ -24,6 +24,10 @@ public class Beer {
     @OneToMany(mappedBy = "beer")
     private List<TasteEntity> tastes = new ArrayList<>();
 
+    public Beer(String name) {
+        this.name = name;
+    }
+
     public void addTaste(TasteEntity tasteEntity){
         tastes.add(tasteEntity);
         tasteEntity.setBeer(this);
